@@ -12,6 +12,6 @@ namespace BattleCompanies.Models
 
         public string KeywordText { get; set; }
 
-        public virtual ICollection<Soldier> Soldiers { get; set; }
+        public virtual ICollection<SoldierKeywords> SoldierKeywords { get; set; }
     }
 }

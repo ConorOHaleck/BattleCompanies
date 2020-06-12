@@ -9,7 +9,8 @@ namespace BattleCompanies.Models
     {
 
         public int CampaignID { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+
+        public string CampaignName { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }
     }

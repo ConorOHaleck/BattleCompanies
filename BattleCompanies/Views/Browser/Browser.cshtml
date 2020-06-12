@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<BattleCompanies.Models.Campaign>
+
+@{
+    ViewData["Title"] = "Campaign Browser";
+}
+
+<body>
+    <h1>Stuff to go here.</h1>
+
+    <p>
+        <a asp-action="NewCampaign">New Campaign</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CampaignID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CampaignName)
+                </th>
+                <th>
+                    No. of Players
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CampaignID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CampaignName)
+                    </td>
+                    <td>
+                        <a asp-action="EditCampaign" asp-route-id="@item.CampaignID">View Campaign</a>
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.Companies.Count)</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

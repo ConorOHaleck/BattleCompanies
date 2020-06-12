@@ -23,6 +23,11 @@ namespace BattleCompanies.Controllers
             return View();
         }
 
+        public IActionResult Browser()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
