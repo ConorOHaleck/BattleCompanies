@@ -22,27 +22,27 @@
                     @Html.DisplayNameFor(model => model.CampaignName)
                 </th>
                 <th>
-                    No. of Players
+                    Number of Players
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CampaignID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CampaignName)
-                    </td>
-                    <td>
-                        <a asp-action="EditCampaign" asp-route-id="@item.CampaignID">View Campaign</a>
-                    </td>
-                    <td>
-                        <p>@Html.DisplayFor(modelItem => item.Companies.Count)</p>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Companies.Count)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "Campaign", "Campaign", new { id=item.CampaignID }, null)
+                </td>
+            </tr>
             }
         </tbody>
     </table>

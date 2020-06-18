@@ -40,10 +40,11 @@ namespace BattleCompanies.Models
 
         public Company Company { get; set; }
 
-        public BaseClass SoldierClass { get; set; }
 
         public virtual ICollection<SoldierWargear> SoldierWargears { get; set; }
 
         public virtual ICollection<SoldierKeywords> SoldierKeywords { get; set; }
+
+
     }
 }

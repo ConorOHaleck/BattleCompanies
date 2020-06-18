@@ -13,6 +13,8 @@ namespace BattleCompanies.Models
 
         public int Size { get; set; }
 
+        public int Influence { get; set; }
+
         public User CompUser { get; set; }
 
         public Campaign CompCampaign { get; set; }

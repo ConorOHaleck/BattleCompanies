@@ -14,5 +14,14 @@ namespace BattleCompanies.Models
         public string FactionName { get; set; }
 
         public virtual ICollection<FactionWargear> FactionWargears { get; set; }
+
+        public Faction()
+        {
+
+        }
+        public Faction(string name)
+        {
+            FactionName = name;
+        }
     }
 }
