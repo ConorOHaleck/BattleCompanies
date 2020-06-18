@@ -14,5 +14,6 @@ namespace BattleCompanies.Models
 
         public Soldier Soldier { get; set; }
         public Keyword Keyword { get; set; }
+
     }
 }

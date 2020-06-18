@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleCompanies.Database;
+using BattleCompanies.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,8 +29,31 @@ namespace BattleCompanies.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> NewCampaign(
+            [Bind("Title")] Campaign campaign)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Campaigns.Add(campaign);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Browser));
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes.");
+            }
+
+            return View(campaign);
+        }
+
         public IActionResult EditCampaign()
         {
+
+
             return View();
         }
     }
