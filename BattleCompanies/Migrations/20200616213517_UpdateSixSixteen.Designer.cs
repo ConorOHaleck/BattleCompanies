@@ -4,14 +4,16 @@ using BattleCompanies.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BattleCompanies.Migrations
 {
     [DbContext(typeof(BattleCompanyContext))]
-    partial class BattleCompanyContextModelSnapshot : ModelSnapshot
+    [Migration("20200616213517_UpdateSixSixteen")]
+    partial class UpdateSixSixteen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,9 +55,6 @@ namespace BattleCompanies.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("CompUserUserID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Influence")
                         .HasColumnType("int");
 
                     b.Property<int>("Size")

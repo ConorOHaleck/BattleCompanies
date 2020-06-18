@@ -54,7 +54,6 @@ namespace BattleCompanies.Database
         public DbSet<Keyword> Keywords { get; set; }
         public DbSet<Soldier> Soldiers { get; set; }
 
-        public DbSet<BaseClass> BaseClasses { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Wargear> Wargears { get; set; }
 
