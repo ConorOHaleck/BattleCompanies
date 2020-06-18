@@ -9,6 +9,8 @@ using BattleCompanies.Models;
 
 namespace BattleCompanies.Controllers
 {
+    //HomeController will be used for login and landing page, but otherwise the other controllers will be used
+    //TODO: Make Index more of a landing page, and add login pages
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

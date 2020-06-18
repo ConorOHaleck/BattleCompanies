@@ -22,7 +22,7 @@ namespace BattleCompanies.Controllers
         }
 
  
-
+        //This returns the primary view for a given campaign.
         public async Task<IActionResult> Campaign(int CampaignID)
         {
             var companies = _context.Companies.Where(co => co.CompCampaign.CampaignID == CampaignID).Include(co => co.CompUser).Include(co => co.CompFaction);
@@ -31,6 +31,8 @@ namespace BattleCompanies.Controllers
             return View( await companies.ToListAsync());
         }
 
+        //This two functions, Create and the HttpPost Create are used to add a new Company to a Campaign.
+        //They should let a User create a company for themselves, with a different View used by an administrator to add someone else to the campaign
         public async Task<IActionResult> Create()
         {
             List<Faction> list = await _context.Factions.ToListAsync();
@@ -59,10 +61,13 @@ namespace BattleCompanies.Controllers
         }
 
 
-
+        //Promote to Hero checks to see if the give soldier is already a hero or not.
+        //If they are not already a Hero, Promote to Hero will give them the Hero keyword
+        //And increase their Fate stat to 1, making them the most minor of newly promoted heroes.
         public async Task<Soldier> PromoteToHero(Soldier s)
         {
             Boolean IsHero = false;
+
 
             foreach(SoldierKeywords sk in s.SoldierKeywords)
             {
@@ -99,6 +104,8 @@ namespace BattleCompanies.Controllers
             return s;
         }
 
+        //The three heroes that a company has when it is first created are slightly stronger than newly promoted heroes
+        //This method will first promote them that way, and then also increase their Might and Will to 1
         public async Task<Soldier> InitialPromotion(Soldier s)
         {
             s = await PromoteToHero(s);
@@ -109,6 +116,8 @@ namespace BattleCompanies.Controllers
             return s;
         }
 
+        //Deprecated. the list of keywords should be accessed from the server where needed.
+        //This method saves a little bit of server overhead in exchange for a great deal of unneccsary extra code.
         public async void PopulateKeys()
         {
             var keys = await _context.Keywords.ToListAsync();

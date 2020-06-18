@@ -8,16 +8,21 @@ namespace BattleCompanies.Database
 {
     public static class DBInitializer
     {
+
+        //Initialize seeds the database, if it doesn't have the correct columns already.
         public static void Initialize(BattleCompanyContext context)
         {
             context.Database.EnsureCreated();
 
+
+            //Declared outside if statements so they can be used to join later tables
             Keyword[] keywords;
             Wargear[] wargears;
             Faction[] factions;
 
 
-
+            //This table of keywords can be used as-is even if the keyword table has already been created.
+            //There should be no difference whatsoever between this array of keywords
             keywords = new Keyword[]
             {
                 new Keyword(Keyword.HERO_KEYWORD),
@@ -87,6 +92,8 @@ namespace BattleCompanies.Database
                 context.SaveChanges();
             }
 
+
+            //Additional Factions should have their own entries in this array, as well as their own complete set of wargears
             if (!context.Factions.Any())
             {
                 factions = new Faction[]

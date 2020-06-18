@@ -10,7 +10,9 @@ namespace BattleCompanies.FactionHelpers
 {
     public static class MordorHelper
     {
-
+        //In LOTR BattleCompanies, every starting Company is identical save for which models are chosen to become Starting Heroes
+        //Add Default Company creates those soldiers (minus the heroes) and adds every required relationship they have.
+        //This method should be called with an 'await' keyword before anything else is done with the company.
         public static async void AddDefaultCompany(BattleCompanyContext context, Company newCompany)
         {
             List<Wargear> wargears = await context.Wargears.ToListAsync();
