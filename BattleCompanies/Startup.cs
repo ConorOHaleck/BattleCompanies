@@ -27,6 +27,7 @@ namespace BattleCompanies
         {
             services.AddControllersWithViews();
 
+            //DEFAULT CONNECTION => Should work on Windows Personal Computers and workstations. Is not intended for production use.
             services.AddDbContext<BattleCompanyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();

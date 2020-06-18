@@ -15,6 +15,9 @@ namespace BattleCompanies
     {
         public static void Main(string[] args)
         {
+
+            //The Following code replaces CreateHoseBuilder(args).Build().Run();
+            //It was replaced in order to use the DBInitializer, which must be done because of critical tables that must be seeded in order for the program to work
             var host = CreateHostBuilder(args).Build();
 
             using(var scope = host.Services.CreateScope())

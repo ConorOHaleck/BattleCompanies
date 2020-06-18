@@ -24,22 +24,27 @@ namespace BattleCompanies.Database
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=BattleCompanyDatabase;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
 
+        //OnModelCreating allows for explicit declaration of relationships
+        //In Entity Framework Core, this is mostly useful for declaring explicit Many-to-Many relationships
+        //As Enttiy Framework Core DOES NOT implicitly determine these based on Collection relationship fields
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            //Declare Many-to-Many for Factions and the Wargear that their heroes can select
             modelBuilder.Entity<FactionWargear>().HasKey(x => new { x.FactionID, x.WargearID });
 
             modelBuilder.Entity<FactionWargear>().HasOne(fw => fw.Wargear).WithMany(w => w.FactionWargears).HasForeignKey(fw => fw.WargearID);
 
             modelBuilder.Entity<FactionWargear>().HasOne(fw => fw.Faction).WithMany(f => f.FactionWargears).HasForeignKey(fw => fw.FactionID);
 
-
+            //Declare Many-to-Many for Soldiers and the many Keywords that apply to them
             modelBuilder.Entity<SoldierKeywords>().HasKey(sk => new { sk.KeywordID, sk.SoldierID });
 
             modelBuilder.Entity<SoldierKeywords>().HasOne(sk => sk.Soldier).WithMany(s => s.SoldierKeywords).HasForeignKey(sk => sk.SoldierID);
 
             modelBuilder.Entity<SoldierKeywords>().HasOne(sk => sk.Keyword).WithMany(k => k.SoldierKeywords).HasForeignKey(sk => sk.KeywordID);
 
-
+            //Declare Many-to-Many for Soldiers and the Wargear they have with them in the game
             modelBuilder.Entity<SoldierWargear>().HasKey(sw => new { sw.WargearID, sw.SoldierID });
 
             modelBuilder.Entity<SoldierWargear>().HasOne(sw => sw.Soldier).WithMany(s => s.SoldierWargears).HasForeignKey(sw => sw.SoldierID);
